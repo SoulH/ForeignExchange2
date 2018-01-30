@@ -10,11 +10,19 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Padding="10">
-            <Label Text="Pesos"/>
+            <Label Text="Amount"/>
             <Entry 
                     Text="{Binding Pesos, Mode=TwoWay}"
                     Keyboard="Numeric" 
-                    Placeholder="Indique valor en pesos"/>
+                    Placeholder="Enter the amount to convert"/>
+            <Label
+                Text="Source rate"/>
+            <Picker 
+                Title="Select a source rate"/>
+            <Label
+                Text="Taget rate"/>
+            <Picker
+                Title="Salect a target rate"/>
             <Button 
                     Command="{Binding ConvertCommand}"
                     Text="Convertir"
@@ -22,27 +30,13 @@
                     TextColor="White"
                     HeightRequest="48"
                     BorderRadius="10"/>
-            <ScrollView Orientation="Vertical" 
-                    VerticalOptions="FillAndExpand" 
-                    HorizontalOptions="FillAndExpand">
-                <StackLayout Padding="10">
-                    <Label Text="Dolares"/>
-                    <Entry 
-                        Text="{Binding Dollars, StringFormat='{0:N4} $'}"
-                        Keyboard="Numeric" 
-                        Placeholder="Indique valor en pesos"/>
-                    <Label Text="Euros"/>
-                    <Entry 
-                        Text="{Binding Euros, StringFormat='{0:N4} €'}"
-                        Keyboard="Numeric" 
-                        Placeholder="Indique valor en pesos"/>
-                    <Label Text="Libras"/>
-                    <Entry 
-                        Text="{Binding Pounds, StringFormat='{0:N4} £'}"
-                        Keyboard="Numeric" 
-                        Placeholder="Indique valor en pesos"/>
-                </StackLayout>
-            </ScrollView>
+            <Label
+                BackgroundColor="Silver"
+                HorizontalTextAlignment="Center"
+                Margin="0,10"
+                Text="Loding rates..."
+                VerticalOptions="FillAndExpand"
+                VerticalTextAlignment="Center"/>
         </StackLayout>
     </ContentPage.Content>
 
