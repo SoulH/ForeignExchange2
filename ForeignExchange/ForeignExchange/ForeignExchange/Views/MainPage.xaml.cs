@@ -13,7 +13,11 @@ namespace ForeignExchange.Views
 		public MainPage()
 		{
 			InitializeComponent();
-            //BindingContext = new MainViewModel();
 		}
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+        }
 	}
 }

@@ -1,9 +1,7 @@
 ﻿using ForeignExchange.Models;
 using ForeignExchange.Services;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -13,43 +11,71 @@ namespace ForeignExchange.ViewModels
     public class MainViewModel : BaseViewModel
     {
         #region Props
-        string message;
-        public string Message
+        ObservableCollection<Rate> rates;
+        public ObservableCollection<Rate> Rates
         {
-            get { return message; }
-            set { SetProperty(ref message, value); }
+            get { return rates; }
+            set { SetProperty(ref rates, value); }
         }
 
-        DialogService dialogService;
-
-        decimal pesos;
-        public decimal Pesos
+        string status;
+        public string Status
         {
-            get { return pesos; }
-            set { SetProperty(ref pesos, value); }
+            get { return status; }
+            set { SetProperty(ref status, value); }
         }
 
-        public ObservableCollection<ForeignExchangeModel> Items { get; set; }
+        decimal amount;
+        public decimal Amount
+        {
+            get { return amount; }
+            set { SetProperty(ref amount, value); Enable(); }
+        }
+
         
-        decimal pounds;
-        public decimal Pounds
+        Rate sourceRate;
+        public Rate SourceRate
         {
-            get { return pounds; }
-            set { SetProperty(ref pounds, value); }
+            get { return sourceRate; }
+            set { SetProperty(ref sourceRate, value); Enable(); }
         }
 
-        decimal dollars;
-        public decimal Dollars
+        Rate targetRate;
+        public Rate TargetRate
         {
-            get { return dollars; }
-            set { SetProperty(ref dollars, value); }
+            get { return targetRate; }
+            set { SetProperty(ref targetRate, value); Enable(); }
         }
 
-        decimal euros;
-        public decimal Euros
+        bool isRunning;
+        public bool IsRunning
         {
-            get { return euros; }
-            set { SetProperty(ref euros, value); }
+            get { return isRunning; }
+            set { SetProperty(ref isRunning, value); }
+        }
+
+        bool isEnabled;
+        public bool IsEnabled
+        {
+            get { return isEnabled; }
+            set { SetProperty(ref isEnabled, value); }
+        }
+
+        string result;
+        public string Result
+        {
+            get { return result; }
+            set { SetProperty(ref result, value); }
+        }
+
+        public bool NotIsRunning
+        {
+            get { return !isRunning; }
+        }
+
+        public bool NotIsEnabled
+        {
+            get { return !isEnabled; }
         }
         #endregion
 
@@ -59,25 +85,53 @@ namespace ForeignExchange.ViewModels
 
         public MainViewModel()
         {
-            Message = "Welcome to Xamarin.Forms!";
-            dialogService = new DialogService();
-            ConvertCommand = new Command(async () => await ConvertMoney());
+            ConvertCommand = new Command(() => Convert());
+            
+            LoadRates();
         }
 
         #region Methods
-        private async Task ConvertMoney()
+        private void Convert()
         {
-            if (Pesos <= 0)
-            {
-                await dialogService.ShowMessage("Error", "Debe ingresar un valor en pesos mayor a cero (0)");
-                return;
-            }
+            var con = amount * (decimal) targetRate.TaxRate / (decimal)sourceRate.TaxRate;
+            Result = $"{amount} ({sourceRate.Code}) = {string.Format("{0:N4}",con)} ({targetRate.Code})";
+        }
 
-            
+        private void Enable()
+        {
+            if ((amount > 0) && (targetRate != null) && (sourceRate != null) && (!IsRunning))
+                IsEnabled = true;
+            else
+                IsEnabled = false;
+        }
 
-            Dollars = XeConvertApi.Convert("COP", "USD", Pesos);
-            Pounds = XeConvertApi.Convert("COP", "GBP", Pesos);
-            Euros = XeConvertApi.Convert("COP", "EUR", Pesos);
+        private void LoadRates()
+        {
+            if (Rates != null) return;
+            IsRunning = true;
+            Result = "Loading rates...";
+
+            if (InternetService.CheckConnection().IsSuccess)
+                LoadDataFromApi(); 
+            else
+                LoadLocalData();
+        }
+
+        private async void LoadLocalData()
+        {
+            Rates = new ObservableCollection<Rate>(await DataService.GetRates());
+            IsRunning = false;
+            Status = "Rates loaded from local data.";
+            Result = "Ready to convert!";
+        }
+
+        private async void LoadDataFromApi()
+        {
+            var list = await ApiExchangeRatesService.GetRates();
+            Rates = new ObservableCollection<Rate>(list);
+            IsRunning = false;
+            Status = "Rates loaded from web service.";
+            Result = "Ready to convert!";
         }
         #endregion
     }

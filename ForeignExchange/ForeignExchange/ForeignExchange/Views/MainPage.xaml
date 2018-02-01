@@ -5,38 +5,83 @@
              x:Class="ForeignExchange.Views.MainPage"
              Title="Foreign Exchange"
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="ic_settings_white_24dp.png" Text="Configurar"/>
-    </ContentPage.ToolbarItems>
+    <ContentPage.Padding>
+        <OnPlatform
+            x:TypeArguments="Thickness"
+            iOS="20,0,20,10"
+            Android="20,20,20,10"/>
+    </ContentPage.Padding>
     <ContentPage.Content>
-        <StackLayout Padding="10">
-            <Label Text="Amount"/>
-            <Entry 
-                    Text="{Binding Pesos, Mode=TwoWay}"
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label 
+                    Text="Amount"
+                    Grid.Row="0"
+                    Grid.Column="0"/>
+                <Entry 
+                    Text="{Binding Amount, Mode=TwoWay}"
                     Keyboard="Numeric" 
-                    Placeholder="Enter the amount to convert"/>
-            <Label
-                Text="Source rate"/>
-            <Picker 
-                Title="Select a source rate"/>
-            <Label
-                Text="Taget rate"/>
-            <Picker
-                Title="Salect a target rate"/>
-            <Button 
+                    Placeholder="Enter the amount to convert"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"/>
+                <Label
+                    Text="Source Rate"
+                    Grid.Row="1"
+                    Grid.Column="0"/>
+                <Picker 
+                    Title="Select a source Rate"
+                    ItemsSource="{Binding Rates}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding SourceRate, Mode=TwoWay}"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"/>
+                <Label
+                    Text="Taget Rate"
+                    Grid.Row="2"
+                    Grid.Column="0"/>
+                <Picker
+                    Title="Salect a target rate"
+                    ItemsSource="{Binding Rates}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding TargetRate, Mode=TwoWay}"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"/>
+                <Button 
                     Command="{Binding ConvertCommand}"
                     Text="Convertir"
                     BackgroundColor="Navy"
                     TextColor="White"
                     HeightRequest="48"
-                    BorderRadius="10"/>
+                    BorderRadius="10"
+                    VerticalOptions="Center"
+                    IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                    Image="ic_play_arrow_white_24dp.png"
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Grid.RowSpan="2"/>
+            </Grid>
             <Label
                 BackgroundColor="Silver"
                 HorizontalTextAlignment="Center"
                 Margin="0,10"
-                Text="Loding rates..."
+                Text="{Binding Result, Mode=TwoWay}"
                 VerticalOptions="FillAndExpand"
-                VerticalTextAlignment="Center"/>
+                VerticalTextAlignment="Center"
+                MinimumHeightRequest="200"/>
         </StackLayout>
     </ContentPage.Content>
 
