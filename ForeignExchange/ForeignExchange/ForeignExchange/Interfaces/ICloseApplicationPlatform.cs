@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ForeignExchange.Interfaces
 {
-    public interface ICloseApplication
+    public interface ICloseApplicationPlatform
     {
         void Close();
     }

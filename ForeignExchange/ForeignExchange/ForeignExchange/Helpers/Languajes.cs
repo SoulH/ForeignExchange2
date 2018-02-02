@@ -8,9 +8,9 @@ namespace ForeignExchange.Helpers
     {
         static Languajes()
         {
-            var ci = DependencyService.Get<ILocalize>().GetCurrentCultureInfo();
+            var ci = DependencyService.Get<ILocalizePlatform>().GetCurrentCultureInfo();
             Resource.Culture = ci;
-            DependencyService.Get<ILocalize>().SetLocale(ci);
+            DependencyService.Get<ILocalizePlatform>().SetLocale(ci);
         }
 
         public static string Accept

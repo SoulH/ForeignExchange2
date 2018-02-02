@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-[assembly: Dependency(typeof(ForeignExchange.iOS.Implementations.Localize))]
+[assembly: Dependency(typeof(ForeignExchange.iOS.Implementations.LocalizeiOSPlatform))]
 namespace ForeignExchange.iOS.Implementations
 {
     using ForeignExchange.Helpers;
@@ -9,7 +9,7 @@ namespace ForeignExchange.iOS.Implementations
     using System.Globalization;
     using System.Threading;
 
-    public class Localize : ILocalize
+    public class LocalizeiOSPlatform : ILocalizePlatform
     {
         public CultureInfo GetCurrentCultureInfo()
         {

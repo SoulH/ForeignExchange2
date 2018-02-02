@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ForeignExchange.Interfaces
 {
-    public interface ILocalize
+    public interface ILocalizePlatform
     {
         CultureInfo GetCurrentCultureInfo();
 

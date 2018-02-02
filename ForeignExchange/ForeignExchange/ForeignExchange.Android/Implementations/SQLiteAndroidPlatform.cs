@@ -1,12 +1,13 @@
-﻿using App.Droid.Implementations;
-using ForeignExchange.Interfaces;
-using Xamarin.Forms;
-using System.IO;
+﻿using Xamarin.Forms;
 
-[assembly: Dependency(typeof(AndroidSQLitePlatform))]
+[assembly: Dependency(typeof(App.Droid.Implementations.SQLiteAndroidPlatform))]
 namespace App.Droid.Implementations
 {
-    public class AndroidSQLitePlatform : ISQLitePlatform
+    using App.Droid.Implementations;
+    using ForeignExchange.Interfaces;
+    using System.IO;
+
+    public class SQLiteAndroidPlatform : ISQLitePlatform
     {
         public string GetPath(string dbName = "SoulForeignExchange.db3")
         {

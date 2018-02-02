@@ -70,8 +70,9 @@
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="25.4.0.2" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implementations\CloseApplication.cs" />
-    <Compile Include="Implementations\AndroidSQLitePlatform.cs" />
+    <Compile Include="Implementations\CloseApplicationAndroidPlatform.cs" />
+    <Compile Include="Implementations\LocalizeAndroidPlatform.cs" />
+    <Compile Include="Implementations\SQLiteAndroidPlatform.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
