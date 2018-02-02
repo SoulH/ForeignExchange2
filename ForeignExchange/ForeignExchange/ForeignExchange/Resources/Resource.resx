@@ -144,6 +144,15 @@
   <data name="MsgReady" xml:space="preserve">
     <value>Ready to convert!</value>
   </data>
+  <data name="MsgStatusLoaded" xml:space="preserve">
+    <value>Rates loaded from internet</value>
+  </data>
+  <data name="MsgStatusLocalLoad" xml:space="preserve">
+    <value>Rates loaded from local data</value>
+  </data>
+  <data name="MsgStatusNoLocalData" xml:space="preserve">
+    <value>Does not have local data or internet connection</value>
+  </data>
   <data name="PkrSourceRate" xml:space="preserve">
     <value>Select a source Rate</value>
   </data>

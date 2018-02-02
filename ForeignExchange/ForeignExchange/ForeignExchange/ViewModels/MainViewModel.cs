@@ -112,18 +112,23 @@ namespace ForeignExchange.ViewModels
             IsRunning = true;
             Result = Languajes.MsgLoadingRates;
 
-            /*if (InternetService.CheckConnection().IsSuccess)
+            if (InternetService.CheckConnection().IsSuccess)
                 LoadDataFromApi(); 
-            else*/
+            else
                 LoadLocalData();
         }
 
         private async void LoadLocalData()
         {
-            Rates = new ObservableCollection<Rate>(await DataService.GetRates());
-            IsRunning = false;
-            Status = "Rates loaded from local data.";
-            Result = Languajes.MsgReady;
+            var list = await DataService.GetRates();
+            if (list?.Count > 0)
+            {
+                Rates = new ObservableCollection<Rate>(list);
+                IsRunning = false;
+                Status = Languajes.MsgStatusLocalLoad;
+                Result = Languajes.MsgReady;
+            }
+            else Status = Languajes.MsgStatusNoLocalData;
         }
 
         private async void LoadDataFromApi()
@@ -132,7 +137,7 @@ namespace ForeignExchange.ViewModels
             Rates = new ObservableCollection<Rate>(list);
             DataService.SetRates(list);
             IsRunning = false;
-            Status = "Rates loaded from web service.";
+            Status = Languajes.MsgStatusLoaded;
             Result = Languajes.MsgReady;
         }
         #endregion

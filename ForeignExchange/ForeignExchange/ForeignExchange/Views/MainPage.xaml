@@ -83,6 +83,14 @@
                 VerticalOptions="FillAndExpand"
                 VerticalTextAlignment="Center"
                 MinimumHeightRequest="200"/>
+            <Label
+                Text="{Binding Status}"
+                HorizontalTextAlignment="Center"
+                HorizontalOptions="FillAndExpand"
+                BackgroundColor="Blue"
+                TextColor="White"
+                FontSize="Small"
+                FontAttributes="Bold"/>
         </StackLayout>
     </ContentPage.Content>
 

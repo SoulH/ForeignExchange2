@@ -41,5 +41,11 @@ namespace ForeignExchange.Helpers
         public static string MsgLoadingRates { get { return Resource.MsgLodingRates; } }
 
         public static string MsgReady { get { return Resource.MsgReady; } }
+
+        public static string MsgStatusNoLocalData { get { return Resource.MsgStatusNoLocalData; } }
+
+        public static string MsgStatusLocalLoad { get { return Resource.MsgStatusLocalLoad; } }
+
+        public static string MsgStatusLoaded { get { return Resource.MsgStatusLoaded; } }
     }
 }

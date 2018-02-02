@@ -144,6 +144,15 @@
   <data name="MsgReady" xml:space="preserve">
     <value>¡Preparado para convertir!</value>
   </data>
+  <data name="MsgStatusLoaded" xml:space="preserve">
+    <value>Tasas cargadas de internet</value>
+  </data>
+  <data name="MsgStatusLocalLoad" xml:space="preserve">
+    <value>Tasas cargadas localmente</value>
+  </data>
+  <data name="MsgStatusNoLocalData" xml:space="preserve">
+    <value>No dispone de datos locales o conexión a internet</value>
+  </data>
   <data name="PkrSourceRate" xml:space="preserve">
     <value>Seleccione la tasa de cambio origen</value>
   </data>

@@ -142,6 +142,33 @@ namespace ForeignExchange.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Rates loaded from internet.
+        /// </summary>
+        public static string MsgStatusLoaded {
+            get {
+                return ResourceManager.GetString("MsgStatusLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Rates loaded from local data.
+        /// </summary>
+        public static string MsgStatusLocalLoad {
+            get {
+                return ResourceManager.GetString("MsgStatusLocalLoad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Does not have local data or internet connection.
+        /// </summary>
+        public static string MsgStatusNoLocalData {
+            get {
+                return ResourceManager.GetString("MsgStatusNoLocalData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Select a source Rate.
         /// </summary>
         public static string PkrSourceRate {
