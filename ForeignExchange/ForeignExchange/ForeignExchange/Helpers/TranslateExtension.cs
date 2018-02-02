@@ -12,7 +12,7 @@ namespace ForeignExchange.Helpers
     public class TranslateExtension : IMarkupExtension
     {
         readonly CultureInfo ci;
-        const string ResourceId = "ForeignExchange2.Resources.Resource";
+        const string ResourceId = "ForeignExchange.Resources.Resource";
 
         static readonly Lazy<ResourceManager> ResMgr =
             new Lazy<ResourceManager>(() => new ResourceManager(

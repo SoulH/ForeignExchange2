@@ -32,5 +32,14 @@ namespace ForeignExchange.Helpers
         {
             get { return Resource.Title; }
         }
+
+        public static string LblAmount
+        {
+            get { return Resource.LblAmount; }
+        }
+
+        public static string MsgLoadingRates { get { return Resource.MsgLodingRates; } }
+
+        public static string MsgReady { get { return Resource.MsgReady; } }
     }
 }

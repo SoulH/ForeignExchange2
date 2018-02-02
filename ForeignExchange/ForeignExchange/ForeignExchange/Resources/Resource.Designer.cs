@@ -79,11 +79,83 @@ namespace ForeignExchange.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Convert.
+        /// </summary>
+        public static string BtnConvert {
+            get {
+                return ResourceManager.GetString("BtnConvert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Error.
         /// </summary>
         public static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Amount.
+        /// </summary>
+        public static string LblAmount {
+            get {
+                return ResourceManager.GetString("LblAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Source Rate.
+        /// </summary>
+        public static string LblSourceRate {
+            get {
+                return ResourceManager.GetString("LblSourceRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Taget Rate.
+        /// </summary>
+        public static string LblTagetRate {
+            get {
+                return ResourceManager.GetString("LblTagetRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Loading rates....
+        /// </summary>
+        public static string MsgLodingRates {
+            get {
+                return ResourceManager.GetString("MsgLodingRates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Ready to convert!.
+        /// </summary>
+        public static string MsgReady {
+            get {
+                return ResourceManager.GetString("MsgReady", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Select a source Rate.
+        /// </summary>
+        public static string PkrSourceRate {
+            get {
+                return ResourceManager.GetString("PkrSourceRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Salect a target rate.
+        /// </summary>
+        public static string PkrTagetRate {
+            get {
+                return ResourceManager.GetString("PkrTagetRate", resourceCulture);
             }
         }
         

@@ -1,5 +1,6 @@
 ﻿using ForeignExchange.Data;
 using ForeignExchange.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,5 +15,13 @@ namespace ForeignExchange.Services
             return Task.Factory.StartNew(() => context.Rates);
         }
 
+        internal static Task SetRates(List<Rate> list)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                context.Db.DeleteAll<Rate>();
+                context.Db.InsertAll(list, true);
+            });
+        }
     }
 }

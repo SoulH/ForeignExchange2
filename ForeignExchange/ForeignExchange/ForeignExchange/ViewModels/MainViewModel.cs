@@ -1,4 +1,5 @@
-﻿using ForeignExchange.Models;
+﻿using ForeignExchange.Helpers;
+using ForeignExchange.Models;
 using ForeignExchange.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -109,11 +110,11 @@ namespace ForeignExchange.ViewModels
         {
             if (Rates != null) return;
             IsRunning = true;
-            Result = "Loading rates...";
+            Result = Languajes.MsgLoadingRates;
 
-            if (InternetService.CheckConnection().IsSuccess)
+            /*if (InternetService.CheckConnection().IsSuccess)
                 LoadDataFromApi(); 
-            else
+            else*/
                 LoadLocalData();
         }
 
@@ -122,16 +123,17 @@ namespace ForeignExchange.ViewModels
             Rates = new ObservableCollection<Rate>(await DataService.GetRates());
             IsRunning = false;
             Status = "Rates loaded from local data.";
-            Result = "Ready to convert!";
+            Result = Languajes.MsgReady;
         }
 
         private async void LoadDataFromApi()
         {
             var list = await ApiExchangeRatesService.GetRates();
             Rates = new ObservableCollection<Rate>(list);
+            DataService.SetRates(list);
             IsRunning = false;
             Status = "Rates loaded from web service.";
-            Result = "Ready to convert!";
+            Result = Languajes.MsgReady;
         }
         #endregion
     }
